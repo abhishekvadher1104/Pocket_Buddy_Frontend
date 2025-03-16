@@ -1,0 +1,91 @@
+/* Center the form */
+.innerdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f9f9f9;
+}
+
+/* Smaller Form Box */
+.inputcontainer {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 270px; /* Smaller form width */
+  text-align: center;
+}
+
+/* Form Title */
+h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+  width: 100%;
+}
+
+/* Input Fields */
+input,
+select {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+/* Input Focus */
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+}
+
+/* Labels */
+label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: block;
+  text-align: left;
+  color: #444;
+  margin-bottom: 2px;
+}
+
+/* Error Messages */
+.errors {
+  color: red;
+  font-size: 0.7rem;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+/* Submit Button */
+.sbmt input {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.sbmt input:hover {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 350px) {
+  .inputcontainer {
+    width: 90%;
+    padding: 0.8rem;
+  }
+}
