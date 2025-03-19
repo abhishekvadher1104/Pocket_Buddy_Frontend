@@ -13,6 +13,8 @@ import AddOffer from "./components/restroOwner/AddOffer";
 import Restro from "./components/restroOwner/Restro";
 import SeeAddedOffers from "./components/layouts/SeeAddedOffers";
 import About from "./components/common/About";
+import SeeOffers from "./components/user/SeeOffers";
+import RestroFullDetails from "./components/user/RestroFullDetails";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:3000";
@@ -29,6 +31,8 @@ function App() {
             <Route path="" element={<PrivateRouter />}>
               <Route path="/user" element={<UserSidebar />}>
                 <Route path="profile" element={<UserProfile />}></Route>
+                <Route path="seeoffers" element={<SeeOffers/>}></Route>
+                <Route path="restaurantdetails/:id" element={<RestroFullDetails />} />
               </Route>
               <Route path="/restro_owner" element={<OfferSidebar />}>
                 <Route path="restro" element={<Restro />} />

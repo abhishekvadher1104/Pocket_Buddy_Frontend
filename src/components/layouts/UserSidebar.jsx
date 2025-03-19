@@ -1,6 +1,6 @@
 import React from 'react'
 import UserNavbar from './UserNavbar'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const UserSidebar = () => {
   return (
@@ -46,13 +46,13 @@ const UserSidebar = () => {
               data-accordion="false"
             >
               <li className="nav-item menu-open">
-                <a href="#" className="nav-link active">
+                <Link to='seeoffers' className="nav-link active">
                   <i className="nav-icon bi bi-speedometer" />
                   <p>
-                    Dashboard
+                    see offers
                     <i className="nav-arrow bi bi-chevron-right" />
                   </p>
-                </a>
+                </Link>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
                     <a href="./index.html" className="nav-link active">

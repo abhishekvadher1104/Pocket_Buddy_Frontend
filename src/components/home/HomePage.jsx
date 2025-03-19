@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import styles from "../../styles/homepage.module.css";
 import Carousel from "./Carousel";
 import salad from "../../assets/images/famous.gif";
+import TopRestro from "./TopRestro";
 const HomePage = () => {
   return (
     <div>
@@ -30,10 +31,11 @@ const HomePage = () => {
         </section>
         <section className={styles.part2}>
           <div className={styles.titleSection}>
-            <h1>Top Picks by Foodies</h1>
+            <p>Top Picks by Foodies</p>
             <img src={salad} alt="" />
           </div>
           <div className={styles.topRestro}>
+            <TopRestro/>
           </div>
         </section>
       </div>
