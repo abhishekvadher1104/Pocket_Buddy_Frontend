@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Loader from "./Loader";
 import axios from "axios";
 
 const SeeAddedOffers = () => {

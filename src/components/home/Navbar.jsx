@@ -19,10 +19,10 @@ const Navbar = () => {
         </div>
         <div className={styles.buttons}>
           <div className={styles.login}>
-            <input type="submit" value="Login" />
+           <Link to={'/login'}> <input type="submit" value="Login" /></Link>
           </div>
           <div className={styles.signup}>
-            <input type="submit" value="Signup" />
+            <Link to={"/signup"}><input type="submit" value="Signup" /></Link>
           </div>
         </div>
 

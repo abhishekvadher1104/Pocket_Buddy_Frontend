@@ -11,10 +11,11 @@ import PrivateRouter from "./components/hooks/PrivateRoutes";
 import HomePage from "./components/home/HomePage";
 import AddOffer from "./components/restroOwner/AddOffer";
 import Restro from "./components/restroOwner/Restro";
-import SeeAddedOffers from "./components/layouts/SeeAddedOffers";
+
 import About from "./components/common/About";
 import SeeOffers from "./components/user/SeeOffers";
 import RestroFullDetails from "./components/user/RestroFullDetails";
+import SeeAddedOffers from "./components/restroOwner/SeeAddedOffers";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:3000";
