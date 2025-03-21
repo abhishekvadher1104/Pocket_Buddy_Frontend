@@ -1,0 +1,54 @@
+.card {
+  width: 320px; /* Increased width */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  padding: 15px;
+  margin:50px;
+}
+
+.cardImage {
+  width: 300px;  
+  height: 180px; 
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cardContent {
+  padding: 12px;
+}
+.cardContainer {
+  display: flex;  /* Arrange cards in a row */
+  flex-wrap: wrap; /* Wrap to next line if needed */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center the cards */
+}
+
+.card {
+  width: 320px; /* Adjust card width */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  padding: 15px;
+}
+
+.cardTitle {
+  font-size: 1.2rem;  /* Bigger text */
+  font-weight: bold;
+}
+
+.cardLocation {
+  font-size: 1rem;
+  color: gray;
+}
+
+.cardOffer {
+  font-size: 1rem;
+  color: red;
+  font-weight: bold;
+  margin-top: 5px;
+}

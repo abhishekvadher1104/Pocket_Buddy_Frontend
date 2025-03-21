@@ -10,38 +10,48 @@ const UserSidebar = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("role");
     navigate("/login");
   };
 
   return (
     <div className="sidebar-container">
       <button className="toggle-btn" title="Sidebar" onClick={toggleSidebar}>
-        {isSidebarOpen ? "⬅️" : "➡️"}
+        {isSidebarOpen ? "◀" : "▶"}
       </button>
-      
+
       <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
         <div className="sidebar-header">
           <span className="brand-text">AdminLTE 4</span>
         </div>
-        
+
         <nav className="sidebar-menu">
           <ul>
             <li>
-              <Link to="seeoffers" className="nav-link">See Offers</Link>
+              <Link to="seeoffers" className="nav-link">
+                See Offers
+              </Link>
             </li>
             <li>
-              <Link to="/theme" className="nav-link">Theme Generate</Link>
+              <Link to="/theme" className="nav-link">
+                Theme Generate
+              </Link>
             </li>
             <li>
-              <Link to="/widgets" className="nav-link">Widgets</Link>
+              <Link to="/widgets" className="nav-link">
+                Widgets
+              </Link>
             </li>
           </ul>
         </nav>
-        
+
         {/* Logout Button */}
-        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </aside>
-      
+
       {/* Main Content */}
       <main className="content">
         <Outlet />

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Loader from '../layouts/Loader'
+import RestroCard from "./RestroCard";
+import styles from "../../styles/restaurantCss/restrocard.module.css"
 const SeeAddedOffers = () => {
   const [offers, setOffers] = useState([]);
   const [isload, setIsload] = useState(false);
@@ -22,19 +24,18 @@ const SeeAddedOffers = () => {
   return (
     <div>
       <div>{isload && <Loader />}</div>
-      <div>
+      <div className={styles.cardContainer}>
         {offers?.map((offer) => (
           <div>
             {
-              <div>
-                <img
-                  style={{ height: 100, width: 100 }}
-                  src={offer?.imageURL}
-                ></img>
-                <h1>{offer?.restroName}</h1>
-                <h4>{offer?.offer}</h4>
-                <p>{offer?.description}</p>
-              </div>
+              <RestroCard 
+              photo={offer.imageURL}
+              restroName={offer.restroName}
+              areaName={offer.areaId.name}
+              cityName={offer.cityId.name}
+              stateName={offer.stateId.name}
+              offer = {offer.offer}
+              />
             }
           </div>
         ))}

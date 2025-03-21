@@ -13,7 +13,8 @@ export const OfferSidebar = () => {
   // Logout function
   const handleLogout = () => {
     console.log("Logging out...");
-    localStorage.removeItem("userToken"); // Remove stored user session
+    localStorage.removeItem("id"); // Remove stored user session
+    localStorage.removeItem("role"); // Remove stored user session
     navigate("/login"); // Redirect to login page
   };
 

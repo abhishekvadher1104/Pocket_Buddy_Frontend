@@ -1,7 +1,7 @@
 import React from "react";
 import styles from"../../styles/signup.module.css";
 import { useForm } from "react-hook-form";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -12,17 +12,22 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const submitHandler = async (data) => {
-    console.log(data);
+    try {
+      console.log(data);
     const res = await axios.post("/signup ", data);
     console.log(res.data);
     
 
-    if (res.status ==201 ) {
+    if (res.status ===201 ) {
       alert("user created successfully");
       navigate("/login");
     } else{
       navigate('/')
       alert("user not created");
+    }
+    } catch (error) {
+      console.error("Signup failed:", error.response?.data || error.message);
+    alert("Signup failed. Please try again.");
     }
   };
   const validationSchema = {
@@ -139,9 +144,9 @@ const Signup = () => {
                   type="password"
                   placeholder=" i.e. a&ce#r%3"
                   id="pw"
-                  {...register("password",validationSchema.passwordValidation)}
+                  {...register("password")}
                 />
-                <div className={`${styles.errors} ${styles.pswerr}`}>{errors.password?.message}</div>
+                {/* <div className={`${styles.errors} ${styles.pswerr}`}>{errors.password?.message}</div> */}
               </div>
               <div className={styles.sbmt}>
                 <input type="submit" value="submit" />

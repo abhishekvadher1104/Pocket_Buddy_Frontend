@@ -38,7 +38,7 @@ function App() {
               <Route path="/restro_owner" element={<OfferSidebar />}>
                 <Route path="restro" element={<Restro />} />
                 <Route path="addoffer" element={<AddOffer />} />
-                <Route path="viewoffers" element={<SeeAddedOffers />} />
+                <Route path="seeoffers" element={<SeeAddedOffers />} />
               </Route>
             </Route>
           </Routes>
