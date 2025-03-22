@@ -9,12 +9,15 @@ const SeeAddedOffers = () => {
 
   const getAllMyOffers = async () => {
     setIsload(true);
-    const res = await axios.get(
-      "/offer/getofferbyuserid/" + localStorage.getItem("id")
-    );
-    console.log(res.data);
-    setOffers(res.data.data);
-    setIsload(false);
+    try {
+      const res = await axios.get("/offer/getofferbyuserid/" + localStorage.getItem("id"));
+      console.log(res.data);
+      setOffers(res.data.data);
+    } catch (error) {
+      console.error("Error fetching offers:", error);
+    } finally {
+      setIsload(false);
+    }
   };
   useEffect(() => {
     console.log(localStorage.getItem("id"));

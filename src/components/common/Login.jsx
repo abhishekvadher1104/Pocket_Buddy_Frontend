@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/login.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
+import Loader from "../layouts/Loader";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [isload, setIsload] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -42,71 +45,76 @@ const Login = () => {
     },
   };
   const submitHandler = async (data) => {
+    setIsload(true);
     try {
       const res = await axios.post("/login", data);
       console.log(res);
-
-
       if (res.status == 200) {
         alert("login successful by " + res.data.data.role);
         localStorage.setItem("id", res.data.data?._id);
         localStorage.setItem("role", res.data.data?.role);
 
-        if (res.data.data.role ===  "user" ) {
+        if (res.data.data.role === "user") {
           console.log("navigating to user ");
           navigate("/user");
         } else if (res.data.data.role === "restaurant_owner") {
           console.log("navigating to restro_owner");
           navigate("/restro_owner");
-        }
-        else {
+        } else {
           alert("cannot get user...");
-      } 
+        }
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsload(false);
     }
+
     console.log(data);
   };
   return (
     <center>
-      <form onSubmit={handleSubmit(submitHandler)}>
-        <div className={styles.innercontainer}>
-          <div className={styles.inputs}>
-          <h1>Login</h1>
-            <div className={styles.inputonly}>
-              <div className={styles.email}>
-                <label htmlFor="email"> &nbsp; Email : &nbsp; </label>
-                <input
-                  type="email"
-                  placeholder=" i.e. abc@xyz.com"
-                  id="email"
-                  {...register("email", validationSchema.emailValidation)}
-                />
-                <div className={`${styles.errors} ${styles.emal}`}>
-                  {errors.email?.message}
+      {isload ? (
+        <Loader />
+      ) : (
+        <form onSubmit={handleSubmit(submitHandler)}>
+          <div className={styles.innercontainer}>
+            <div className={styles.inputs}>
+              <h1>Login</h1>
+              <div className={styles.inputonly}>
+                <div className={styles.email}>
+                  <label htmlFor="email"> &nbsp; Email : &nbsp; </label>
+                  <input
+                    type="email"
+                    placeholder=" i.e. abc@xyz.com"
+                    id="email"
+                    {...register("email", validationSchema.emailValidation)}
+                  />
+                  <div className={`${styles.errors} ${styles.emal}`}>
+                    {errors.email?.message}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.password}>
-                <label htmlFor="password">&nbsp;Password : &nbsp; </label>
-                <input
-                  type="password"
-                  placeholder=" i.e. a&ce#r%3"
-                  id="password"
-                  autoComplete="current-password"
-                  {...register("password")}
-                />
-                {/* <div className={`${styles.errors} ${styles.pswrd}`}>
+                <div className={styles.password}>
+                  <label htmlFor="password">&nbsp;Password : &nbsp; </label>
+                  <input
+                    type="password"
+                    placeholder=" i.e. a&ce#r%3"
+                    id="password"
+                    autoComplete="current-password"
+                    {...register("password")}
+                  />
+                  {/* <div className={`${styles.errors} ${styles.pswrd}`}>
                   {errors.password?.message}
                 </div> */}
+                </div>
+              </div>
+              <div className={styles.submit}>
+                <input type="submit" value="submit" />
               </div>
             </div>
-            <div className={styles.submit}>
-              <input type="submit" value="submit" />
-            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      )}
     </center>
   );
 };

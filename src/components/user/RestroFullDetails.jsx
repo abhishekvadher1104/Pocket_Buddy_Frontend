@@ -40,12 +40,11 @@ const RestroFullDetails = () => {
         }
       }
     )
-      // console.log("✅ Rating Added:", res.data);
       alert("Rating added successfully!");
       console.log(Res.data.data);
       
         setRating(star);
-        setIsRated(true); //  Disable further rating
+        setIsRated(true); 
     } catch {
       (err) => console.error("Error adding rating:", err);
     }
