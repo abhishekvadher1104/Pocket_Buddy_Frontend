@@ -4,6 +4,7 @@ import styles from "../../styles/homepage.module.css";
 import Carousel from "./Carousel";
 import salad from "../../assets/images/famous.gif";
 import TopRestro from "./TopRestro";
+import Footer from "../common/Footer";
 const HomePage = () => {
   return (
     <div>
@@ -39,6 +40,7 @@ const HomePage = () => {
           </div>
         </section>
       </div>
+      <Footer/>
     </div>
   );
 };

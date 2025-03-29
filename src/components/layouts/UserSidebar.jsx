@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import offerIcon from "../../assets/images/offer.png";
+import userIcon from "../../assets/images/user.png";
+import historyIcon from "../../assets/images/refresh.png";
+import styles from "../../styles/userCss/userSidebar.module.css";
 
 const UserSidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -16,44 +20,39 @@ const UserSidebar = () => {
   };
 
   return (
-    <div className="sidebar-container">
-      <button className="toggle-btn" title="Sidebar" onClick={toggleSidebar}>
+    <div className={styles.sidebarContainer}>
+      <button className={styles.toggleBtn} title="Sidebar" onClick={toggleSidebar}>
         {isSidebarOpen ? "◀" : "▶"}
       </button>
 
-      <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
-        <div className="sidebar-header">
-          <span className="brand-text">AdminLTE 4</span>
-        </div>
-
-        <nav className="sidebar-menu">
+      <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.open : styles.closed}`}>
+        <nav className={styles.sidebarMenu}>
           <ul>
             <li>
-              <Link to="seeoffers" className="nav-link">
-                See Offers
-              </Link>
+              <img src={offerIcon} alt="Offers" />
+              {isSidebarOpen && <Link to="seeoffers" className={styles.navLink}>See Offers</Link>}
             </li>
             <li>
-              <Link to="/theme" className="nav-link">
-                Theme Generate
-              </Link>
+              <img src={historyIcon} alt="History" />
+              {isSidebarOpen && <Link to="history" className={styles.navLink}>History</Link>}
             </li>
             <li>
-              <Link to="/widgets" className="nav-link">
-                Widgets
-              </Link>
+              <img src={userIcon} alt="Profile" />
+              {isSidebarOpen && <Link to="profile" className={styles.navLink}>Profile</Link>}
             </li>
           </ul>
         </nav>
 
         {/* Logout Button */}
-        <button className="logout-btn" onClick={handleLogout}>
-          Logout
-        </button>
+        {isSidebarOpen && (
+          <button className={styles.logoutBtn} onClick={handleLogout}>
+            Logout
+          </button>
+        )}
       </aside>
 
       {/* Main Content */}
-      <main className="content">
+      <main className={styles.mainContent}>
         <Outlet />
       </main>
     </div>

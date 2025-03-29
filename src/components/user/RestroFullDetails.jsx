@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const RestroFullDetails = () => {
   const id = useParams().id;
   const [restro, setRestro] = useState(null);
@@ -12,10 +12,11 @@ const RestroFullDetails = () => {
   const getRestroById = async () => {
     try {
       const res = await axios.get(`/offer/getofferbyid/${id}`);
-      console.log(res.data.data);
+      // console.log(res.data.data);
       setRestro(res.data.data);
+      toast.success("data fetched successfully")
     } catch (error) {
-      console.log(error);
+      toast.error("can't fetch details")
     }
   };
 

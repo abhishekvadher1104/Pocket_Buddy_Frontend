@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import styles from "../../styles/login.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import addUser from "../../assets/images/add-user.png";
+import homePage from "../../assets/images/home-button.png";
+import forgotPassword from "../../assets/images/wrong-password.png";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../layouts/Loader";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -49,23 +53,30 @@ const Login = () => {
     try {
       const res = await axios.post("/login", data);
       console.log(res);
-      if (res.status == 200) {
-        alert("login successful by " + res.data.data.role);
+      if (res.status === 200) {
+        toast.success("login success as " + res.data.data.role, {
+          position: "top-center",
+          autoClose: 3000,
+        });
         localStorage.setItem("id", res.data.data?._id);
         localStorage.setItem("role", res.data.data?.role);
-
         if (res.data.data.role === "user") {
-          console.log("navigating to user ");
-          navigate("/user");
+          navigate("/user/profile");
         } else if (res.data.data.role === "restaurant_owner") {
-          console.log("navigating to restro_owner");
           navigate("/restro_owner");
         } else {
-          alert("cannot get user...");
+          toast.error("cannot get user...", {
+            position: "top-center",
+            autoClose: 3000,
+          });
         }
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Invalid Credentials", {
+        position: "top-center",
+
+        autoClose: 3000,
+      });
     } finally {
       setIsload(false);
     }
@@ -109,7 +120,23 @@ const Login = () => {
                 </div>
               </div>
               <div className={styles.submit}>
-                <input type="submit" value="submit" />
+                <div>
+                  <input type="submit" value="submit" />
+                </div>
+              </div>
+              <div className={styles.additionalFunctionality}>
+                <div>
+                  <Link to={"/signup"} title="create Account">
+                    <img src={addUser} alt="" />
+                  </Link>
+                </div>
+
+                <div>
+                  <Link to={"/forgotpassword"} title="Reset Password"><img src={forgotPassword} alt="" /></Link>
+                </div>
+                <div>
+                  <Link to={'/'} title="HomePage"> <img src={homePage} /></Link>
+                </div>
               </div>
             </div>
           </div>

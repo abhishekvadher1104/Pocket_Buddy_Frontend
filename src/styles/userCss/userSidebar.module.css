@@ -1,0 +1,102 @@
+.sidebarContainer {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebarMenu ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+}
+li img {
+  height: 20px;
+  width: 20px;
+}
+.navLink {
+  display: block;
+  color: rgb(167, 208, 255);
+  text-decoration: none;
+  font-weight: 400;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.navLink:hover {
+  background: #aaacb0;
+  color:azure;  
+}
+
+.logoutBtn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.logoutBtn:hover {
+  background: darkred;
+}
+
+.mainContent {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px);
+}
+
+.sidebar {
+  width: 250px;
+  background: #777b80;
+  height: 100vh;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mainContent {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px);
+}
+
+.sidebar.closed + .mainContent {
+  margin-left: 0;
+  width: 100%;
+}
+
+.toggleBtn {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  color: white;
+  background: #343a40;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 5px;
+  width: 40px;
+}
+
+.toggleBtn:hover {
+  background: #495057;
+}

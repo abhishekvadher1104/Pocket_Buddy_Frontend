@@ -7,7 +7,6 @@
   background: #f8f9fa;
 }
 
-/* Login Box */
 .inputs {
   background: #ffffff;
   padding: 2rem;
@@ -18,7 +17,6 @@
   position: relative;
 }
 
-/* Title Inside Box */
 .inputs h1 {
   font-size: 1.8rem;
   color: #333;
@@ -29,8 +27,6 @@
   border-bottom: 2px solid #eee;
   width: 100%;
 }
-
-
 
 input {
   width: 100%;
@@ -77,6 +73,17 @@ label {
 
 .submit input:hover {
   background: #0056b3;
+}
+.additionalFunctionality{
+  display: flex;
+  align-items:center;
+  margin-top: 10px;
+  justify-content: space-around;  
+  padding:10px;
+}
+.additionalFunctionality img{
+  height:30px;
+  width:30px;
 }
 
 @media (max-width: 400px) {

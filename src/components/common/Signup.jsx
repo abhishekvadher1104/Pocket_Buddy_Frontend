@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../layouts/Loader";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [isload, setIsload] = useState(false);
@@ -20,16 +21,16 @@ const Signup = () => {
       const res = await axios.post("/signup ", data);
       console.log(res.data);
       if (res.status === 201) {
-        alert("user created successfully");
+        toast.success("user created successfully");
         navigate("/login");
       } else {
         navigate("/");
-        alert("user not created");
+        toast.error("user not created");
       }
       setIsload(false);
     } catch (error) {
-      console.error("Signup failed:", error.response?.data || error.message);
-      alert("Signup failed. Please try again.");
+      // console.error("Signup failed:", error.response?.data || error.message);
+      toast.error("Signup failed. Please try again.");
     } finally {
       setIsload(false);
     }
@@ -97,7 +98,7 @@ const Signup = () => {
                     placeholder=" i.e. abc"
                     id="fname"
                     {...register(
-                      "firstname",
+                      "firstName",
                       validationSchema.firstnameValidation
                     )}
                   />
@@ -112,7 +113,7 @@ const Signup = () => {
                     placeholder=" i.e. xyz"
                     id="lname"
                     {...register(
-                      "lastname",
+                      "lastName",
                       validationSchema.lastnameValidation
                     )}
                   />

@@ -32,22 +32,22 @@ export const OfferSidebar = () => {
         <nav className="sidebar-nav">
           <ul>
             <li>
-              <Link to="addoffer" className="nav-link">
+              <Link to="/restro_owner/addoffer" className="nav-link">
                 <i className="icon bi bi-speedometer"></i>
                 <span>ADD Offer</span>
               </Link>
             </li>
             <li>
-              <Link to="seeoffers" className="nav-link">
+              <Link to="/restro_owner/seeoffers" className="nav-link">
                 <i className="icon bi bi-speedometer"></i>
                 <span>See My Offers</span>
               </Link>
             </li>
             <li>
-              <a href="#" className="nav-link">
+              <Link to='/profile' className="nav-link">
                 <i className="icon bi bi-box-seam-fill"></i>
-                <span>Widgets</span>
-              </a>
+                <span>Profile</span>
+              </Link>
             </li>
           </ul>
         </nav>

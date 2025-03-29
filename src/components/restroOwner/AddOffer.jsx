@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+// import '../../styles/'
 
 const AddOffer = () => {
   const { register, handleSubmit } = useForm();
@@ -56,9 +58,9 @@ const AddOffer = () => {
       console.log(res);
 
       if (res.status == 200) {
-        alert("data added successfully");
+        toast.success("data added successfully");
       } else {
-        alert("failed to add data");
+        toast.error("failed to add data");
       }
       console.log(data);
     } catch (error) {
@@ -126,11 +128,11 @@ const AddOffer = () => {
         </div>
         <div className="sdate">
           <label htmlFor="sdate">Enter the start date for offer: </label>
-          <input type="date" id="sdate" {...register("startDate")} />
+          <input type="date" id="sdate" {...register("startDate")}  min={new Date().toISOString().split("T")[0]} />
         </div>
         <div className="edate">
           <label htmlFor="edate">Enter the end date for offer: </label>
-          <input type="date" id="edate" {...register("endDate")} />
+          <input type="date" id="edate" {...register("endDate")} min={new Date().toISOString().split("T")[0]}/>
         </div>
         <div className="latude">
           <label htmlFor="latude">Enter the Latitude of Restaurant: </label>
@@ -156,8 +158,8 @@ const AddOffer = () => {
           <label htmlFor="img">add Image of your offer</label>
           <input type="file" id="img" {...register("image")} />
         </div>
-        <div className="submit">
-          <input type="submit" />
+        <div className="submit" >
+          <input type="submit" style={{backgroundColor:"rgb(76, 76, 255)" , color:"white"}}/>
         </div>
       </form>
     </div>

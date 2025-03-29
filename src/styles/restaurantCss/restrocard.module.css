@@ -27,7 +27,7 @@
 }
 
 .card {
-  width: 320px; /* Adjust card width */
+  width: 320px; 
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
