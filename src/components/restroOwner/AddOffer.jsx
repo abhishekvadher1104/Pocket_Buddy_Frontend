@@ -1,165 +1,126 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-// import '../../styles/'
 
 const AddOffer = () => {
   const { register, handleSubmit } = useForm();
-  const [states, setStates] = useState([]);
-  const [cities, setCities] = useState([]);
-  const [areas, setAreas] = useState([]);
-
-  useEffect(() => {
-    getAllStates();
-  }, []);
-
-  const getAllStates = async () => {
-    const res = await axios.get("/state/getallstates");
-    console.log(res.data.data);
-    
-    setStates(res.data.data);
-  }
-
-  const getCityByStateId = async (id) => {
-    const res = await axios.get("/city/getcitybystateid/" + id);
-    console.log(res.data.data);
-        
-    setCities(res.data.data);
-  };
-  const getAreaByCityId = async (id) => {
-    const res = await axios.get("/area/getareabycityid/" + id);
-    setAreas(res.data.data);
-  };
+  const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
 
   const submitHandler = async (data) => {
     data.userId = localStorage.getItem("id");
-    console.log(data);
+    console.log("Form Data:", data);
 
     try {
-      const formdata = new FormData();
-      formdata.append("restroName", data.restroName);
-      formdata.append("offer", data.offer);
-      formdata.append("description", data.description);
-      formdata.append("startDate", data.startDate);
-      formdata.append("endDate", data.endDate);
-      formdata.append("latitude", data.latitude);
-      formdata.append("longitude", data.longitude);
-      formdata.append("foodType", data.foodType);
-      formdata.append("areaId", data.areaId);
-      formdata.append("cityId", data.cityId);
-      formdata.append("stateId", data.stateId);
-      formdata.append("image", data.image[0]);
-      formdata.append("userId", data.userId);
+      const formData = new FormData();
+      formData.append("offer", data.offer);
+      formData.append("description", data.description);
+      formData.append("startDate", data.startDate);
+      formData.append("endDate", data.endDate);
+      formData.append("foodType", data.foodType);
+      formData.append("latitude", data.latitude);
+      formData.append("longitude", data.longitude);
+      formData.append("userId", data.userId);
 
-      console.log(formdata);
-
-      const res = await axios.post("/offer/addofferwithfile", formdata);
-      console.log(res);
-
-      if (res.status == 200) {
-        toast.success("data added successfully");
-      } else {
-        toast.error("failed to add data");
+      // Image file validation
+      const file = data.imageURL?.[0];
+      if (!file) {
+        console.error("No file selected!");
+        toast.error("Please select an image file!");
+        return;
       }
-      console.log(data);
+      formData.append("imageURL", file);
+
+      // Debugging: Print FormData values
+      console.log("Final FormData Before Sending:");
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
+
+      // Sending request
+      const res = await axios.post("/offer/addofferwithfile", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log(res.data);
+      
+
+      if (res.data.message) {
+        toast.success("Offer added successfully!");
+      } else {
+        toast.error("Failed to add offer.");
+      }
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong!");
+      console.error(error);
     }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(submitHandler)}>
-        <div className="name">
-          <label htmlFor="name">Enter Restaurant Name : </label>
-          <input type="text" id="name" {...register("restroName")} />
-        </div>
+        <h1>Add Offer</h1>
+
         <div className="offer">
-          <label htmlFor="offer">
-            Enter the offer you have in Restaurant:
-          </label>
-          <input type="text" id="offer" {...register("offer")} />
+          <label htmlFor="offer">Enter the offer:</label>
+          <input type="text" id="offer" {...register("offer", { required: true })} />
         </div>
+
         <div className="desc">
-          <label htmlFor="desc">Enter the brief description about offer:</label>
-          <input type="text" id="desc" {...register("description")} />
+          <label htmlFor="desc">Brief description:</label>
+          <input type="text" id="desc" {...register("description", { required: true })} />
         </div>
-        <div className="state">
-          <label htmlFor="state">select State: </label>
-          <select
-            id="state"
-            {...register("stateId")}
-            onChange={(event) =>{ console.log(event);
-             getCityByStateId(event.target.value)}}
-          >
-            <option value="">select state</option>
-            {states?.map((state) => (
-              <option key={state._id} value={state._id}>
-                {state.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="city">
-          <label htmlFor="city">select City: </label>
-          <select
-            id="city"
-            {...register("cityId")}
-            onChange={(event) => getAreaByCityId(event.target.value)}
-          >
-            <option>select city</option>
-            {cities?.map((city) => (
-              <option key={city._id} value={city._id}>
-                {city.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="area">
-          <label>Select Area</label>
-          <select {...register("areaId")}>
-            <option>select area</option>
-            {areas?.map((area) => (
-              <option key={area._id} value={area._id}>
-                {area.name}
-              </option>
-            ))}
-          </select>
-        </div>
+
         <div className="sdate">
-          <label htmlFor="sdate">Enter the start date for offer: </label>
-          <input type="date" id="sdate" {...register("startDate")}  min={new Date().toISOString().split("T")[0]} />
+          <label htmlFor="sdate">Start date:</label>
+          <input
+            type="date"
+            id="sdate"
+            {...register("startDate", { required: true })}
+            min={new Date().toLocaleDateString()}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
         </div>
+
         <div className="edate">
-          <label htmlFor="edate">Enter the end date for offer: </label>
-          <input type="date" id="edate" {...register("endDate")} min={new Date().toISOString().split("T")[0]}/>
+          <label htmlFor="edate">End date:</label>
+          <input
+            type="date"
+            id="edate"
+            {...register("endDate", { required: true })}
+            min={startDate}
+          />
         </div>
+
         <div className="latude">
-          <label htmlFor="latude">Enter the Latitude of Restaurant: </label>
-          <input type="text" id="latude" {...register("latitude")} />
+          <label htmlFor="latude">Latitude:</label>
+          <input type="text" id="latude" {...register("latitude", { required: true })} />
         </div>
+
         <div className="lotude">
-          <label htmlFor="lotude">Enter the Longitude of Restaurant: </label>
-          <input type="text" id="lotude" {...register("longitude")} />
+          <label htmlFor="lotude">Longitude:</label>
+          <input type="text" id="lotude" {...register("longitude", { required: true })} />
         </div>
+
         <div className="foodtype">
-          <label htmlFor="foodtype">Select type of Food: </label>
-          <select id="foodtype" {...register("foodType")}>
-            <option value="select">Select</option>
+          <label htmlFor="foodtype">Select food type:</label>
+          <select id="foodtype" {...register("foodType", { required: true })}>
+            <option value="">Select</option>
             <option value="gujarati">Gujarati</option>
             <option value="punjabi">Punjabi</option>
             <option value="chinese">Chinese</option>
-            <option value="southindian">South indian</option>
-            <option value="pavbhaji">Pav-Bhaji</option>
+            <option value="southindian">South Indian</option>
+            <option value="pavbhaji">Pav Bhaji</option>
             <option value="italian">Italian</option>
           </select>
         </div>
+
         <div>
-          <label htmlFor="img">add Image of your offer</label>
-          <input type="file" id="img" {...register("image")} />
+          <label htmlFor="img">Add Image of your offer:</label>
+          <input type="file" id="img" {...register("imageURL", { required: true })} />
         </div>
-        <div className="submit" >
-          <input type="submit" style={{backgroundColor:"rgb(76, 76, 255)" , color:"white"}}/>
+
+        <div className="submit">
+          <input type="submit" style={{ backgroundColor: "rgb(76, 76, 255)", color: "white" }} />
         </div>
       </form>
     </div>

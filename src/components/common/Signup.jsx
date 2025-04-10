@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../styles/signup.module.css";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../layouts/Loader";
 import { toast } from "react-toastify";
@@ -29,7 +29,6 @@ const Signup = () => {
       }
       setIsload(false);
     } catch (error) {
-      // console.error("Signup failed:", error.response?.data || error.message);
       toast.error("Signup failed. Please try again.");
     } finally {
       setIsload(false);
@@ -163,10 +162,12 @@ const Signup = () => {
                     id="pw"
                     {...register("password")}
                   />
-                  {/* <div className={`${styles.errors} ${styles.pswerr}`}>{errors.password?.message}</div> */}
                 </div>
                 <div className={styles.sbmt}>
                   <input type="submit" value="submit" />
+                </div>
+                <div>
+                  <Link to='/login'>already have an account? </Link>
                 </div>
               </div>
             </div>

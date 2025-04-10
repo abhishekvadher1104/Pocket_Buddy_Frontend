@@ -1,17 +1,42 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa; 
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 20px; 
+  width: 90%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
 .card {
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
   background: #fff;
   padding: 15px;
-  margin:50px;
+  transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
   transform: scale(1.05);
-  color:rgb(76, 76, 255)
+  color: rgb(76, 76, 255);
 }
 
 .image {
@@ -19,30 +44,6 @@
   height: 160px;
   object-fit: cover;
   border-bottom: 2px solid #f1f1f1;
-}
-.outerDiv {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; 
-  justify-content: center; 
-  transition: margin-left 0.3s ease-in-out;
-}
-.cardContent {
-  padding: 15px;
-}
-
-.title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.offerText {
-  color: #ff6600;
-  font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 10px;
 }
 
 .link {

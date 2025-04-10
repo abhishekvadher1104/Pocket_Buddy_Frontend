@@ -29,7 +29,7 @@ li img {
 
 .navLink:hover {
   background: #aaacb0;
-  color:azure;  
+  color: azure;
 }
 
 .logoutBtn {
@@ -62,6 +62,21 @@ li img {
   position: fixed;
   top: 0;
   left: 0;
+}
+.img {
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0px;
+  width: 100%;
+  text-transform: capitalize;
 }
 
 .sidebar.closed {

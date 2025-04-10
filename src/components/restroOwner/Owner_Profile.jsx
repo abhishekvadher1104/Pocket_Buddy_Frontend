@@ -4,10 +4,12 @@ import defaultPic from "../../assets/images/restaurant.png";
 import axios from "axios";
 import styles from "../../styles/userCss/profile.module.css";
 import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Owner_Profile = () => {
   const userId = localStorage.getItem("id");
   const [profilePic, setProfilePic] = useState(defaultPic);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,6 +31,10 @@ const Owner_Profile = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(`/user/${userId}`);
+        if(!response.data){
+          toast.warn('Please complete your profile')
+        }
+       else{
         if (response.data && response.data.data) {
           const userData = response.data.data;
           reset({
@@ -45,6 +51,7 @@ const Owner_Profile = () => {
             setProfilePic(userData.profilePic);
           }
         }
+       }
       } catch (error) {
         console.log("Error fetching profile:", error);
       }

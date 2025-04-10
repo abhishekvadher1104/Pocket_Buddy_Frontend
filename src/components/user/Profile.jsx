@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import styles from "../../styles/userCss/profile.module.css"; 
-import defaultPic from '../../assets/images/default.png'
+import styles from "../../styles/userCss/profile.module.css";
+import defaultPic from "../../assets/images/default.png";
 import { toast } from "react-toastify";
 const ProfileForm = () => {
   const userId = localStorage.getItem("id");
@@ -27,6 +27,9 @@ const ProfileForm = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(`/user/${userId}`);
+        if(!response.data.data){
+          toast.warn('please complete profile')
+        }
         if (response.data && response.data.data) {
           const userData = response.data.data;
           reset({

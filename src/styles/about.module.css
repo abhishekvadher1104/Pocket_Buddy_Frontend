@@ -4,6 +4,9 @@
 }
 .main{
   padding:10px;
+  margin-top: 70px;
+  /* background-color: rgb(202, 161, 161); */
+  background: rgba(221, 228, 235, 0.6);  
 }
 .para{
   font-size: 20px;

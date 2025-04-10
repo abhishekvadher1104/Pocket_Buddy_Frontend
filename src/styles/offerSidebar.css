@@ -9,6 +9,11 @@
   transition: transform 0.3s ease-in-out;
   padding: 20px;
 }
+.sidebarHeader{
+  display: flex;
+  align-items: center;
+  justify-content: center,
+}
 
 .sidebar.closed {
   transform: translateX(-100%);

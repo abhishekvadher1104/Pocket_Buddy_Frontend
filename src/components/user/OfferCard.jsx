@@ -1,18 +1,26 @@
 import { Link } from "react-router-dom";
-import styles from "../../styles/userCss/offercard.module.css"; // Make sure to create & style this file
+import styles from "../../styles/userCss/offercard.module.css";
+import MyCountDown from "../common/MyCountDown";
 
-const OfferCard = ({ offer }) => {
+const OfferCard = ({ photo, Restaurant, Area, City, offer, id , startDate,endDate}) => {
   return (
     <div className={styles.card}>
       <img
-        src={offer?.imageURL || "/default-restaurant.jpg"} // Provide default image if none available
-        alt={offer?.restroName || "Restaurant Image"}
+        src={photo || "no img available"}
+        alt={Restaurant}
         className={styles.image}
       />
       <div className={styles.cardContent}>
-        <h2 className={styles.title}>{offer?.restroName || "No Name Available"}</h2>
-        <p className={styles.offerText}>{offer?.offer || "No Offer Available"}</p>
-        <Link to={`/user/restaurantdetails/${offer._id}`} className={styles.link}>
+        <h2 className={styles.title}>{Restaurant}</h2>
+        <p className={styles.offerText}>🔥{offer || "No Offer Available"}</p>
+        <p className={styles.cardLocation}>
+          📍 {Area && City ? `${Area}, ${City}` : "Location Not Available"}
+        </p>
+        <MyCountDown startDate={startDate} endDate={endDate}/>
+        <Link
+          to={`/user/restaurantdetails/${id}`}
+          className={styles.link}
+        >
           See More
         </Link>
       </div>
