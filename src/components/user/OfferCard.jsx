@@ -16,7 +16,9 @@ const OfferCard = ({ photo, Restaurant, Area, City, offer, id , startDate,endDat
         <p className={styles.cardLocation}>
           📍 {Area && City ? `${Area}, ${City}` : "Location Not Available"}
         </p>
+        <span> 
         <MyCountDown startDate={startDate} endDate={endDate}/>
+        </span>
         <Link
           to={`/user/restaurantdetails/${id}`}
           className={styles.link}

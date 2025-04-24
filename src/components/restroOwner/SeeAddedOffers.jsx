@@ -15,10 +15,15 @@ const SeeAddedOffers = () => {
       const res = await axios.get(
         `/offer/getofferbyuserid/${localStorage.getItem("id")}`
       );
-      
+      const today = new Date();
+      const allOffers = res.data.data;
+      const filteredOffers = allOffers.filter(
+        (offer) => new Date(offer.endDate) >= today
+      );
+
       const response = await axios.get("/users/restaurantname");
       setRestaurant(response.data.data);
-      setOffers(res.data.data);
+      setOffers(filteredOffers);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -39,7 +44,7 @@ const SeeAddedOffers = () => {
     return {
       ...offer,
       restroName: matchedRestaurant ? matchedRestaurant.Restaurant : "Unknown",
-      area: matchedRestaurant ? matchedRestaurant.area : "Unknown", 
+      area: matchedRestaurant ? matchedRestaurant.area : "Unknown",
       city: matchedRestaurant ? matchedRestaurant.city : "unavailable",
       Description: matchedRestaurant
         ? matchedRestaurant.description
@@ -49,20 +54,27 @@ const SeeAddedOffers = () => {
 
   return (
     <div>
-      {isload && <Loader />}
-      <div className={styles.cardContainer}>
-        {mergedOffers.map((offer) => (
-          <RestroCard
-            key={offer._id}
-            photo={offer.imageURL}
-            Restaurant={offer.restroName}
-            City={offer.city}
-            Area={offer.area}
-            offer={offer.offer}
-            Description={offer.description}
-          />
-        ))}
-      </div>
+      {isload ? (
+        <Loader />
+      ) : (
+        <div>
+          <h1>My Offers</h1>
+          <div className={styles.cardContainer}>
+            {mergedOffers.map((offer) => (
+              <RestroCard
+                key={offer._id}
+                photo={offer.imageURL}
+                Restaurant={offer.restroName}
+                startDate={offer.startDate}
+                endDate={offer.endDate}
+                offer={offer.offer}
+                Description={offer.description}
+                offerId={offer._id}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

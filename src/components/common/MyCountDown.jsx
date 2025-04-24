@@ -23,7 +23,7 @@ const MyCountDown = ({ startDate, endDate }) => {
   } else if (now >= start && now <= end) {
     return (
     <div>
-      <p>offer ends in</p>
+      <p>offer expires in</p>
          <Countdown
         date={end}
         renderer={renderer}

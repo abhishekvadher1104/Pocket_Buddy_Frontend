@@ -26,13 +26,17 @@
   gap: 20px;
 }
 
-.link {
+.navLink {
   font-weight: bold;
   text-decoration: none !important;
   color:  rgb(202, 81, 81);
   font-weight: 500;
   cursor: pointer;
   font-size: 19px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #333;
 }
 .buttons {
   display: flex;
@@ -46,11 +50,14 @@
   justify-content: center;
   gap: 20px;
 }
-.link:hover {
-  color: black;
+.navLink:hover {
+  color: #ff9800;
+  text-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
+  
 }
-.link:active {
-  color: black !important;
+.activeLink {
+  color: #ff9800;
+  text-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
 }
 .logo img {
   padding: 5px 0px 5px 8px;
@@ -93,3 +100,5 @@
   color: black;
   background-color: #fff;
 }
+
+

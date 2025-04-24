@@ -64,7 +64,7 @@ const Login = () => {
         if (res.data.data.role === "user") {
           navigate("/user/profile");
         } else if (res.data.data.role === "restaurant_owner") {
-          navigate("/restro_owner");
+          navigate("/restro_owner/profile");
         } else {
           toast.error("cannot get user...", {
             position: "top-center",

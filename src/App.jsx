@@ -13,7 +13,6 @@ import About from "./components/common/About";
 import SeeOffers from "./components/user/SeeOffers";
 import RestroFullDetails from "./components/user/RestroFullDetails";
 import SeeAddedOffers from "./components/restroOwner/SeeAddedOffers";
-import Contact from "./components/common/Contact";
 import ForgotPassword from "./components/common/ForgotPassword";
 import ResetPassword from "./components/common/ResetPassword";
 import { ToastContainer } from "react-toastify";
@@ -22,6 +21,7 @@ import Owner_Profile from "./components/restroOwner/Owner_Profile";
 import Ratings from "./components/user/Ratings";
 import RestroRatings from "./components/restroOwner/RestroRatings";
 import History from "./components/user/History";
+import Expired from "./components/restroOwner/Expired";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:3000";
@@ -33,7 +33,6 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/about" element={<About />}></Route>
-            <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
@@ -58,7 +57,8 @@ function App() {
                 <Route path="addoffer" element={<AddOffer />} />
                 <Route path="seeoffers" element={<SeeAddedOffers />} />
                 <Route path="profile" element={<Owner_Profile />} />
-                <Route path="ratings" element={<RestroRatings/>}/>
+                <Route path="ratings/:offerId" element={<RestroRatings/>}/>
+                <Route path='expired' element={<Expired/>}/>
               </Route>
             </Route>
           </Routes>

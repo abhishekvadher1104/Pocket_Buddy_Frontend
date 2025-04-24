@@ -36,12 +36,11 @@ const HomePage = () => {
             <img src={salad} alt="" />
           </div>
           <div className={styles.topRestro}>
-            {/* <TopRestro/> */}
             top rated Restro will be showing soon...
           </div>
         </section>
       </div>
-      {/* <Footer/> */}
+      <Footer />
     </div>
   );
 };

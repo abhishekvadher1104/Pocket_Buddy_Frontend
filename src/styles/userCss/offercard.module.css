@@ -3,7 +3,16 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
+}
+.inputWrapper{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inputField{
+  width:800px;
 }
 
 .heading {
@@ -14,12 +23,13 @@
 }
 
 .cardContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 20px; 
-  width: 90%;
-  max-width: 1200px;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 40px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 .card {
@@ -37,6 +47,12 @@
 .card:hover {
   transform: scale(1.05);
   color: rgb(76, 76, 255);
+}
+.card:hover h2{
+  color:orange;
+}
+.card:hover span{
+  color:red;
 }
 
 .image {

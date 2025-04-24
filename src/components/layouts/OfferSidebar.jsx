@@ -44,7 +44,7 @@ export const OfferSidebar = () => {
           }}
         >
           <img
-            style={{ height: "100px", width: "100px", borderRadius: "50%" }}
+            style={{ height: "130px", width: "130px", borderRadius: "50%" }}
             src={img}
             alt=""
           />
@@ -70,33 +70,28 @@ export const OfferSidebar = () => {
           <ul>
             <li>
               <Link to="addoffer" className="nav-link">
-                <i className="icon bi bi-speedometer"></i>
-                <span>ADD Offer</span>
+                <span>📝ADD Offer</span>
               </Link>
             </li>
             <li>
               <Link to="seeoffers" className="nav-link">
-                <i className="icon bi bi-speedometer"></i>
-                <span>See My Offers</span>
+                <span>📦See My Offers</span>
               </Link>
             </li>
             <li>
               <Link to="profile" className="nav-link">
-                <i className="icon bi bi-box-seam-fill"></i>
-                <span>Profile</span>
+                <span>🧑Profile</span>
               </Link>
             </li>
             <li>
-              <Link to="ratings" className="nav-link">
-                <i className="icon bi bi-box-seam-fill"></i>
-                <span>⭐Ratings</span>
+              <Link to="expired" className="nav-link">
+                <span>❌Expired</span>
               </Link>
             </li>
           </ul>
         </nav>
 
         <button className="logout-btn" onClick={handleLogout}>
-          <i className="icon bi bi-box-arrow-right"></i>
           Logout
         </button>
       </aside>

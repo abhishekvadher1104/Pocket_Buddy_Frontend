@@ -1,15 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
 import OfferCard from "./OfferCard";
 import Loader from "../layouts/Loader";
 import styles from "../../styles/userCss/offercard.module.css";
-import MyCountDown from "../common/MyCountDown";
 
 const SeeOffers = () => {
   const [offers, setOffers] = useState([]);
-  const [isLoad, setIsLoad] = useState(false);
   const [restaurant, setRestaurant] = useState([]);
+  const [isLoad, setIsLoad] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  const userId = localStorage.getItem("id");
 
   const fetchOffer = async () => {
     setIsLoad(true);
@@ -17,11 +18,8 @@ const SeeOffers = () => {
       const res = await axios.get("/offer/getalloffers");
       const response = await axios.get("/users/restaurantname");
 
-      setOffers(res.data.data); //all offers
-      console.log("API Response:", res.data.data);
-
-      setRestaurant(response.data.data); // Restaurant details name,area, city
-      console.log(response.data);
+      setOffers(res.data.data);
+      setRestaurant(response.data.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -32,26 +30,85 @@ const SeeOffers = () => {
   useEffect(() => {
     fetchOffer();
   }, []);
-  const mergedOffers = offers.map((offer) => {
-    const matchedRestaurant = restaurant.find(
-      (restro) => String(restro._id) === String(offer.userId) //restaurant details wadi id  means usermodel ma save chhe etle id and offers na table ma user ni reference ni id etle userId metch thay te rite be reponses ne merge karo and then map karo
-    );
-    console.log("metched: ", matchedRestaurant);
 
-    return {
-      ...offer,
-      restroName: matchedRestaurant ? matchedRestaurant.Restaurant : "Unknown",
-      area: matchedRestaurant ? matchedRestaurant.area : "Unknown",
-      city: matchedRestaurant ? matchedRestaurant.city : "unavailable",
-    };
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchText.trim() !== "") {
+        saveSearchHistory(searchText);
+      }
+    }, 1000); 
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchText]);
+
+  const saveSearchHistory = async (text) => {
+    try {
+      await axios.post("/history/addhistory", {
+        userId: userId,
+        restaurant: text,
+      });
+    } catch (error) {
+      console.error("Failed to save search history", error);
+    }
+  };
+
+  const mergedOffers = offers
+    .map((offer) => {
+      const matchedRestaurant = restaurant.find(
+        (restro) => String(restro._id) === String(offer.userId)
+      );
+      return {
+        ...offer,
+        restroName: matchedRestaurant
+          ? matchedRestaurant.Restaurant
+          : "Unknown",
+        area: matchedRestaurant ? matchedRestaurant.area : "Unknown",
+        city: matchedRestaurant ? matchedRestaurant.city : "Unavailable",
+      };
+    })
+    .filter((offer) => {
+      const endDate = new Date(offer.endDate);
+      const today = new Date();
+
+      return endDate >= today;
+    });
+
+  const filteredOffers = mergedOffers.filter((offer) => {
+    const search = searchText.toLowerCase();
+    const formattedStartDate = new Date(offer.startDate).toLocaleDateString(
+      "en-US"
+    );
+    const formattedEndDate = new Date(offer.endDate).toLocaleDateString(
+      "en-US"
+    );
+    return (
+      offer.restroName.toLowerCase().includes(search) ||
+      offer.city.toLowerCase().includes(search) ||
+      offer.area.toLowerCase().includes(search) ||
+      offer.offer.toLowerCase().includes(search) ||
+      offer.description.toLowerCase().includes(search) ||
+      formattedStartDate.includes(search) ||
+      formattedEndDate.includes(search)
+    );
   });
 
   return (
     <div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          placeholder="🔍 Search by name, date, food type..."
+          className={styles.inputField}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+      </div>
+
       {isLoad && <Loader />}
+
       <div className={styles.cardContainer}>
-        {mergedOffers.map((offer) => (
-          <>
+        {filteredOffers.length > 0 ? (
+          filteredOffers.map((offer) => (
             <OfferCard
               key={offer._id}
               photo={offer.imageURL}
@@ -61,11 +118,15 @@ const SeeOffers = () => {
               offer={offer.offer}
               Description={offer.description}
               id={offer._id}
-              startDate={offer.startDate} 
+              startDate={offer.startDate}
               endDate={offer.endDate}
             />
-          </>
-        ))}
+          ))
+        ) : (
+          <p style={{ padding: "1rem", textAlign: "center" }}>
+            No offers found matching your search.
+          </p>
+        )}
       </div>
     </div>
   );

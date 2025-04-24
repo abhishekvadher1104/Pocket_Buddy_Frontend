@@ -1,6 +1,5 @@
 .sidebarContainer {
   display: flex;
-  height: 100vh;
 }
 
 .sidebarMenu ul {
@@ -17,33 +16,68 @@ li img {
   height: 20px;
   width: 20px;
 }
+.sidebarMenu ul {
+  list-style: none;
+  padding: 0;
+}
+
 .navLink {
-  display: block;
-  color: rgb(167, 208, 255);
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  font-weight: 400;
-  padding: 10px;
   border-radius: 5px;
-  transition: background 0.3s;
+  transition: background 0.3s ease-in-out;
+  position: relative;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.navLink span {
+  font-weight: 500;
+  color: black;
+  margin: 10px;
 }
 
 .navLink:hover {
-  background: #aaacb0;
-  color: azure;
+  color: #fff;
+  background-color: #ec8852;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
 }
 
 .logoutBtn {
   width: 100%;
+  padding: 12px;
   margin-top: 20px;
-  padding: 10px;
-  background: red;
+  background-color: #fc2f44;
   color: white;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
 .logoutBtn:hover {
-  background: darkred;
+  background-color: #dc3545;
 }
 
 .mainContent {
@@ -55,7 +89,8 @@ li img {
 
 .sidebar {
   width: 250px;
-  background: #777b80;
+  background-color: #eac7bc;
+  color: white;
   height: 100vh;
   padding: 20px;
   transition: transform 0.3s ease-in-out;
@@ -102,9 +137,9 @@ li img {
   position: fixed;
   top: 20px;
   right: 10px;
-  color: white;
-  background: #343a40;
+  color: rgb(235, 138, 20);
   border: none;
+  font-size: 20px;
   padding: 10px;
   cursor: pointer;
   z-index: 1000;
@@ -113,5 +148,6 @@ li img {
 }
 
 .toggleBtn:hover {
-  background: #495057;
+  background: #eb7d16;
+  color:#eac7bc
 }

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const ProfileForm = () => {
   const userId = localStorage.getItem("id");
   const [profilePic, setProfilePic] = useState(defaultPic);
+  const [loading, setIsLoad] = useState(false);
 
   const {
     register,
@@ -26,9 +27,10 @@ const ProfileForm = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        setIsLoad(true);
         const response = await axios.get(`/user/${userId}`);
-        if(!response.data.data){
-          toast.warn('please complete profile')
+        if (!response.data.data) {
+          toast.warn("please complete profile");
         }
         if (response.data && response.data.data) {
           const userData = response.data.data;

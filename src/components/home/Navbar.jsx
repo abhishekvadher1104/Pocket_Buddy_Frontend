@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/navbar.module.css";
-import logo from '../../assets/images/logo.png'
-import {Link} from 'react-router-dom'
+import logo from "../../assets/images/logo.png";
+import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
@@ -9,24 +9,45 @@ const Navbar = () => {
         <div className={styles.logo}>
           <img src={logo} alt="" />
         </div>
-       <div className={styles.right_nav}>
-       <div className={styles.navbar}>
-          <div className={styles.nav_items}>
-            <Link className={styles.link} to='/'>Home</Link>
-            <Link className={styles.link} to='/about'>About Us</Link>
-            <Link className={styles.link} to='/contact'>Contact</Link>
+        <div className={styles.right_nav}>
+          <div className={styles.navbar}>
+            <div className={styles.nav_items}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.navLink} ${styles.activeLink}`
+                    : styles.navLink
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.navLink} ${styles.activeLink}`
+                    : styles.navLink
+                }
+                to="/about"
+              >
+                About Us
+              </NavLink>
+            </div>
+          </div>
+          <div className={styles.buttons}>
+            <div className={styles.login}>
+              <NavLink to={"/login"}>
+                {" "}
+                <input type="submit" value="Login" />
+              </NavLink>
+            </div>
+            <div className={styles.signup}>
+              <NavLink to={"/signup"}>
+                <input type="submit" value="Signup" />
+              </NavLink>
+            </div>
           </div>
         </div>
-        <div className={styles.buttons}>
-          <div className={styles.login}>
-           <Link to={'/login'}> <input type="submit" value="Login" /></Link>
-          </div>
-          <div className={styles.signup}>
-            <Link to={"/signup"}><input type="submit" value="Signup" /></Link>
-          </div>
-        </div>
-
-       </div>
       </div>
     </div>
   );
