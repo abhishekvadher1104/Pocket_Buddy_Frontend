@@ -31,27 +31,6 @@ const SeeOffers = () => {
     fetchOffer();
   }, []);
 
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      if (searchText.trim() !== "") {
-        saveSearchHistory(searchText);
-      }
-    }, 1000);
-
-    return () => clearTimeout(delayDebounce);
-  }, [searchText]);
-
-  const saveSearchHistory = async (text) => {
-    try {
-      await axios.post("/history/addhistory", {
-        userId: userId,
-        restaurant: text,
-      });
-    } catch (error) {
-      console.error("Failed to save search history", error);
-    }
-  };
-
   const mergedOffers = offers
     .map((offer) => {
       const matchedRestaurant = restaurant.find(

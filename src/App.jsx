@@ -18,8 +18,8 @@ import Profile from "./components/user/Profile";
 import Owner_Profile from "./components/restroOwner/Owner_Profile";
 import Ratings from "./components/user/Ratings";
 import RestroRatings from "./components/restroOwner/RestroRatings";
-import History from "./components/user/History";
 import Expired from "./components/restroOwner/Expired";
+import WishList from "./components/user/WishList";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:3000";
@@ -43,7 +43,7 @@ function App() {
               <Route path="/user" element={<UserSidebar />}>
                 <Route path="profile" element={<Profile />} />
                 <Route path="seeoffers" element={<SeeOffers />} />
-                <Route path="history" element={<History />} />
+                <Route path="wishlist" element={<WishList />} />
                 <Route path="ratings" element={<Ratings/>}/>
                 <Route
                   path="restaurantdetails/:id"

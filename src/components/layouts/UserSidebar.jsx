@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import styles from "../../styles/userCss/userSidebar.module.css";
+import defaultPic from "../../assets/images/default.png";
 import axios from "axios";
 
 const UserSidebar = () => {
@@ -47,7 +48,7 @@ const UserSidebar = () => {
         <div className={styles.img}>
           <img
             style={{ height: "120px", width: "120px", borderRadius: "50%" }}
-            src={img}
+            src={img ? img : defaultPic}
             alt=""
           />
         </div>
@@ -69,8 +70,8 @@ const UserSidebar = () => {
             </li>
             <li>
               {isSidebarOpen && (
-                <Link to="history" className={styles.navLink}>
-                  <span>🕒History</span>
+                <Link to="wishlist" className={styles.navLink}>
+                  <span>♥️Wishlist</span>
                 </Link>
               )}
             </li>
