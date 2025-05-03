@@ -36,7 +36,7 @@ const SeeOffers = () => {
       if (searchText.trim() !== "") {
         saveSearchHistory(searchText);
       }
-    }, 1000); 
+    }, 1000);
 
     return () => clearTimeout(delayDebounce);
   }, [searchText]);

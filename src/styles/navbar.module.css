@@ -5,7 +5,7 @@
 .nav {
   height: 70px; 
   min-height: 70px;
-  background-color: #fff;
+  /* background-color: #fff; */
   backdrop-filter: blur(10px);
   color: rgb(202, 81, 81);
   padding: 10px 20px;
@@ -15,8 +15,9 @@
   position: fixed;
   top: 0;
   left: 0;
+  opacity: 2; 
   width: 100%;
-  z-index: 1000;
+  z-index: 100;
   transition: background 0.3s ease-in-out;
 }
 .nav_items {
@@ -51,12 +52,12 @@
   gap: 20px;
 }
 .navLink:hover {
-  color: #ff9800;
+  color: #f97316;
   text-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
   
 }
 .activeLink {
-  color: #ff9800;
+  color: #f97316;
   text-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
 }
 .logo img {

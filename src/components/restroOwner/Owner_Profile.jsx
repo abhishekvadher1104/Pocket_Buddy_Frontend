@@ -5,11 +5,11 @@ import axios from "axios";
 import styles from "../../styles/userCss/profile.module.css";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
-
+import Loader from "../layouts/Loader"; 
 const Owner_Profile = () => {
   const userId = localStorage.getItem("id");
   const [profilePic, setProfilePic] = useState(defaultPic);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // Track loading state
   const {
     register,
     handleSubmit,
@@ -31,29 +31,30 @@ const Owner_Profile = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(`/user/${userId}`);
-        if(!response.data){
-          toast.warn('Please complete your profile')
-        }
-       else{
-        if (response.data && response.data.data) {
-          const userData = response.data.data;
-          reset({
-            email: userData.email || "",
-            firstName: userData.firstName || "",
-            lastName: userData.lastName || "",
-            city: userData.city || "",
-            Restaurant: userData.Restaurant || "",
-            bio: userData.bio || "",
-            area: userData.area || "",
-          });
+        if (!response.data) {
+          toast.warn('Please complete your profile');
+        } else {
+          if (response.data && response.data.data) {
+            const userData = response.data.data;
+            reset({
+              email: userData.email || "",
+              firstName: userData.firstName || "",
+              lastName: userData.lastName || "",
+              city: userData.city || "",
+              Restaurant: userData.Restaurant || "",
+              bio: userData.bio || "",
+              area: userData.area || "",
+            });
 
-          if (userData.profilePic) {
-            setProfilePic(userData.profilePic);
+            if (userData.profilePic) {
+              setProfilePic(userData.profilePic);
+            }
           }
         }
-       }
       } catch (error) {
         console.log("Error fetching profile:", error);
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched
       }
     };
     if (userId) {
@@ -84,6 +85,10 @@ const Owner_Profile = () => {
       toast.error("Failed to update profile...");
     }
   };
+
+  if (loading) {
+    return <Loader />; // Show the loader while loading
+  }
 
   return (
     <div className={styles.profileContainer}>
@@ -149,7 +154,7 @@ const Owner_Profile = () => {
           <label htmlFor="area">Area</label>
           <input
             type="text"
-            {...register("area", { required: "area is required" })}
+            {...register("area", { required: "Area is required" })}
             className={styles.input}
           />
         </div>

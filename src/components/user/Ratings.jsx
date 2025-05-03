@@ -20,7 +20,7 @@ const Ratings = () => {
 
   return (
     <div className="p-4">
-      <h1 >Your Ratings</h1>
+      <h1 >⭐Your Ratings</h1>
       {ratings.length === 0 ? (
         <p>No ratings found.</p>
       ) : (

@@ -1,42 +1,41 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import {FaStar} from 'react-icons/fa'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import TopOfferCard from "../common/TopOfferCard";
 
 const TopRestro = () => {
-  const ratingsArray = [1,2,3,4,5]
-  console.log(ratingsArray);
-  
-  const [rating,setRating] = useState(0)
-  const handleRatings = (star) =>{
-    setRating(star)
-  }
+  const [offer, setOffer] = useState([]);
+
+  const topOffers = async () => {
+    try {
+      const res = await axios.get("/rating/toprestro");
+      console.log(res.data);
+      const filteredOffers= res.data.data[0].offers.filter((offerData)=>{
+        const currDate = new Date();
+        const endDate = new Date(offerData?.offerId?.endDate)
+        return endDate > currDate;
+      });  
+      setOffer(filteredOffers)
+    } catch (err) {
+      console.error("Failed to fetch top offers:", err);
+    }
+  };
+
+  useEffect(() => {
+    topOffers();
+  }, []);
 
   return (
-    <div>
-      <h2>Rate Restaurant</h2>
-     {
-      ratingsArray.map((star)=>{
-        console.log("rating star");
-        return(
-          <FaStar
-          key={star}
-          style={{
-            fontSize: "50px",
-            cursor: "pointer",
-            color: star <= rating ? "gold" : "gray",
-            marginRight: "5px",
-          }}
-          onClick={() => handleRatings(star)}
+    <div className="p-6 overflow-x-auto">
+      <div className="flex gap-4 whitespace-nowrap">
+        {offer.map((offerData) => (
+          <TopOfferCard
+            key={offerData._id}
+            offerData={offerData}  // Passing the whole offer data object
           />
-        )
-      })
-
-     }
-
-   
-      
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TopRestro
+export default TopRestro;

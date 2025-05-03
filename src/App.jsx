@@ -1,7 +1,5 @@
 import UserSidebar from "./components/layouts/UserSidebar";
 import { OfferSidebar } from "./components/layouts/OfferSidebar";
-import "./assets/adminlte.css";
-import "./assets/adminlte.min.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "../src/components/common/Login";
 import Signup from "../src/components/common/Signup";

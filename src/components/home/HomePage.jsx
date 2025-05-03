@@ -9,24 +9,30 @@ const HomePage = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className={styles.outer}>
+      <div className={`${styles.outer} ${styles.background}`}>
         <section className={styles.part1}>
           <div className={styles.text1}>
-            <div className={styles.img1}>
-              <Carousel />
-            </div>
             <div className={styles.part1text}>
-              <h1>Craving something delicious? Let Pocket Buddy guide you!</h1>
-              <p className={styles.para}>
-                Welcome to <span className={styles.span}>P</span>
-                <span>ocket</span>
-                <span className={styles.span}>B</span>uddy. your ultimate
-                companion for discovering the best restaurants around you.
-                Whether you're craving local flavors or a fine dining
-                experience, we bring the best options right to your fingertips.
-                Enjoy delicious meals, exclusive offers, and a hassle-free
-                dining journey with us!
-              </p>
+              <h1>
+                Craving something delicious? Let
+                <span className={styles.highlight}> Pocket Buddy</span> guide
+                you!
+              </h1>
+              <div className={styles.section2}>
+                <div className={styles.paragraph}>
+                  <p className={styles.para}>
+                    Welcome to <span className={styles.span}>Pocket Buddy</span>
+                    . your ultimate companion for discovering the best
+                    restaurants around you. Whether you're craving local flavors
+                    or a fine dining experience, we bring the best options right
+                    to your fingertips. Enjoy delicious meals, exclusive offers,
+                    and a hassle-free dining journey with us!
+                  </p>
+                </div>
+                <div className={styles.img1}>
+                  <Carousel />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -36,7 +42,7 @@ const HomePage = () => {
             <img src={salad} alt="" />
           </div>
           <div className={styles.topRestro}>
-            top rated Restro will be showing soon...
+            <TopRestro />
           </div>
         </section>
       </div>
