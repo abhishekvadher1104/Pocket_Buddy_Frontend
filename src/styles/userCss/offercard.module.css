@@ -1,0 +1,107 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  /* background-color: #f8f9fa; */
+}
+
+.inputWrapper{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inputField{
+  width:800px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+.title{
+  font-size: 25px;
+  margin:10px;
+  font-weight: 500;
+}
+.offerText{
+  font-size: 20px;
+  margin:10px;
+  font-weight: 300;
+}
+.cardContainer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  max-width: 320px;
+  min-height: 450px;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  padding: 15px;
+  transition: transform 0.2s ease-in-out;
+}
+.cardLocation{
+  font-size: 20px;
+  margin: 10px;
+  font-weight: 300;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  color: rgb(76, 76, 255);
+}
+.card:hover h2{
+  color:orange;
+}
+.card:hover span{
+  color:red;
+}
+
+.image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 2px solid #f1f1f1;
+}
+.imageWrapper{
+  position: relative;
+}
+.heartButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.link {
+  position: absolute;
+  display:inline-block;
+  padding: 8px 12px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  right:35%;
+  bottom:15px;
+}
+
+.link:hover {
+  background: #0056b3;
+}

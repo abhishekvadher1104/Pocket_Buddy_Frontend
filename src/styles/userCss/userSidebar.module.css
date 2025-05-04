@@ -1,0 +1,153 @@
+.sidebarContainer {
+  display: flex;
+}
+
+.sidebarMenu ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+}
+li img {
+  height: 20px;
+  width: 20px;
+}
+.sidebarMenu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+  position: relative;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.navLink span {
+  font-weight: 500;
+  color: black;
+  margin: 10px;
+}
+
+.navLink:hover {
+  color: #fff;
+  background-color: #ec8852;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #fc2f44;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background-color: #dc3545;
+}
+
+.mainContent {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px);
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #eac7bc;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.img {
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0px;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mainContent {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px);
+}
+
+.sidebar.closed + .mainContent {
+  margin-left: 0;
+  width: 100%;
+}
+
+.toggleBtn {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  color: rgb(235, 138, 20);
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 5px;
+  width: 40px;
+}
+
+.toggleBtn:hover {
+  background: #eb7d16;
+  color:#eac7bc
+}

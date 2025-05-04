@@ -1,0 +1,70 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+.heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.formGroup {
+  margin-bottom: 15px;
+}
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+.formControl {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.invalid {
+  border-color: #dc3545;
+}
+.invalidFeedback {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.buttonGroup {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.btnPrimary {
+  background-color: #007bff;
+  color: #fff;
+}
+.btnPrimary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.btnSecondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+.btnSecondary:hover {
+  background-color: #545b62;
+}
+.errorMessage {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}

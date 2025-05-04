@@ -1,0 +1,104 @@
+/* Main container */
+.main {
+  margin-top: 40px;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* List container */
+.aboutList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Section titles (h2) */
+.sectionTitle {
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #3498db;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Introduction paragraph */
+.intro {
+  font-size: 1.2rem;
+  color: #34495e;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* List of features/offers */
+.offers,
+.whyChooseUs,
+.mission {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.7;
+  margin-top: 15px;
+}
+
+.offers p,
+.whyChooseUs p {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.offers p::before,
+.whyChooseUs p::before {
+  content: "✔️";
+  color: #3498db;
+  margin-right: 10px;
+}
+
+/* Mission section */
+.mission {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.8;
+  margin-top: 25px;
+}
+
+.missionList {
+  padding-left: 20px;
+}
+
+.missionList li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  position: relative;
+}
+
+.missionList li::before {
+  content: "👉 ";
+  position: absolute;
+  left: -20px;
+  color: #3498db;
+}
+
+.mission p {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+
+  .intro,
+  .offers,
+  .whyChooseUs,
+  .mission {
+    font-size: 1rem;
+  }
+}

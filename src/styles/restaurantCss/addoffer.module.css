@@ -1,0 +1,62 @@
+.addOfferContainer {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.addOfferContainer h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+}
+
+.addOfferContainer label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+.addOfferContainer input[type="text"],
+.addOfferContainer input[type="date"],
+.addOfferContainer input[type="file"],
+.addOfferContainer select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #fff;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.addOfferContainer input[type="text"]:focus,
+.addOfferContainer input[type="date"]:focus,
+.addOfferContainer select:focus {
+  border-color: #4c4cff;
+  outline: none;
+}
+
+.submit input[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background-color: #f87a1a !important;
+  color: white !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit input[type="submit"]:hover {
+  background-color: #eba05f !important;
+  color:#fff !important;
+}
